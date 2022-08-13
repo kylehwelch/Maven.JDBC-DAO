@@ -12,6 +12,14 @@ public class Movie implements DTO {
     public Movie() {
     }
 
+    public Movie(String title, String genre, Double runtime, String rating, Integer year) {
+        this.title = title;
+        this.genre = genre;
+        this.runtime = runtime;
+        this.rating = rating;
+        this.year = year;
+    }
+
     public Movie(Integer id, String title, String genre, Double runtime, String rating, Integer year) {
         this.id = id;
         this.title = title;

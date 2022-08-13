@@ -49,12 +49,13 @@ public class MovieDAO {
     public boolean addMovie(Movie movie) {
         Connection connection = ConnectionFactory.getConnection();
         try { PreparedStatement ps = connection.prepareStatement(
-                    "INSERT INTO movies VALUES (NULL, ?, ?, ?, ?, ?)");
-            ps.setString(1, movie.getTitle());
-            ps.setString(2, movie.getGenre());
-            ps.setDouble(3, movie.getRuntime());
-            ps.setString(4, movie.getRating());
-            ps.setInt(5, movie.getYear());
+                    "INSERT INTO movies VALUES (?, ?, ?, ?, ?, ?)");
+            ps.setInt(1, movie.getId());
+            ps.setString(2, movie.getTitle());
+            ps.setString(3, movie.getGenre());
+            ps.setDouble(4, movie.getRuntime());
+            ps.setString(5, movie.getRating());
+            ps.setInt(6, movie.getYear());
             int i = ps.executeUpdate();
             if (i == 1) {return true;}
         } catch (SQLException ex) {ex.printStackTrace();}
@@ -64,12 +65,13 @@ public class MovieDAO {
     public boolean updateMovie(Movie movie) {
         Connection connection = ConnectionFactory.getConnection();
         try { PreparedStatement ps = connection.prepareStatement(
-                    "UPDATE movie SET title=?, genre=?, runtime=?, rating=?, year=? WHERE id=?");
+                    "UPDATE movies SET title=?, genre=?, runtime=?, rating=?, year=? WHERE id=?");
             ps.setString(1, movie.getTitle());
             ps.setString(2, movie.getGenre());
             ps.setDouble(3, movie.getRuntime());
             ps.setString(4, movie.getRating());
             ps.setInt(5, movie.getYear());
+            ps.setInt(6, movie.getId());
             int i = ps.executeUpdate();
             if (i == 1) {return true;}
         } catch (SQLException ex) { ex.printStackTrace(); }
